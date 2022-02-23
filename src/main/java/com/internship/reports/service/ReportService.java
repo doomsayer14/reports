@@ -16,7 +16,9 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,17 +26,22 @@ public class ReportService {
 
     private final Proxy proxy;
 
-    private final static String PATH = "/Users/vyesman/IdeaProjects/medicines/src/main/resources/reports";
+    private final static String PATH = "/Users/vyesman/IdeaProjects/reports/src/main/resources/reports";
 
     private final static String TMT = "";
 
     @SneakyThrows
     public String generateExpensesReport(String reportFormat, Pageable pageable) {
-        Page<TreatmentModel> medicinePage = new PageImpl<>(proxy.treatments());
+        List<TreatmentModel> treatments = proxy.treatments();
+        int num = 1;
+        for (TreatmentModel treatment : treatments) {
+            treatment.setNum(num);
+            num++;
+        }
+        Page<TreatmentModel> medicinePage = new PageImpl<>(treatments);
         //load file and compile
-        File file = ResourceUtils.getFile("classpath:MedicineReport.jrxml");
+        File file = ResourceUtils.getFile("classpath:expensesReport.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-        //FontsОпределите используемый шрифт
 
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(medicinePage.getContent());
 
@@ -43,10 +50,10 @@ public class ReportService {
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
         if (reportFormat.equalsIgnoreCase("html")) {
-            JasperExportManager.exportReportToHtmlFile(jasperPrint, PATH + "/reportAll.html");
+            JasperExportManager.exportReportToHtmlFile(jasperPrint, PATH + "/expensesReport.html");
         }
         if (reportFormat.equalsIgnoreCase("pdf")) {
-            JasperExportManager.exportReportToPdfFile(jasperPrint, PATH + "/reportAll.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, PATH + "/expensesReport.pdf");
         }
         return PATH;
     }

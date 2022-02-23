@@ -8,6 +8,6 @@ import java.util.List;
 
 @FeignClient(name = "treatment-service")
 public interface Proxy {
-    @GetMapping("/api/v1/treatments/29")
+    @GetMapping("/api/v1/treatments/20/USD")
     List<TreatmentModel> treatments();
 }

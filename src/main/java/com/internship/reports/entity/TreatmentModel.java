@@ -12,8 +12,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 public class TreatmentModel {
+    private int num;
     private String title;
-    //    private String currency;
+    private String currency;
     private Double price;
     private LocalDate startDate;
 
@@ -21,13 +22,14 @@ public class TreatmentModel {
     @Getter
     @JsonPOJOBuilder
     public static class Builder {
+        private int num;
         private String title;
-        //    private String currency;
+        private String currency;
         private Double price;
         private LocalDate startDate;
 
         public TreatmentModel build() {
-            return new TreatmentModel(title, price, startDate);
+            return new TreatmentModel(num, title, currency, price, startDate);
         }
     }
 }

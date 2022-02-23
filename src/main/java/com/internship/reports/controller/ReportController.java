@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.web.PageableDefault;
@@ -24,6 +25,7 @@ import java.util.List;
 
 //@Api(value = "ReportController")
 @RestController
+@RequestMapping(value = "/report")
 @RequiredArgsConstructor
 public class ReportController {
 
@@ -34,16 +36,16 @@ public class ReportController {
 
 //        @ApiOperation(value = "Expenses list for patient. Includes bills for appointment and medicines",
 //            notes = "Returns Page of ")
-    @SneakyThrows
-    @GetMapping
+
+    @GetMapping(value = "/treatment")
     public ResponseEntity<HttpStatus> generateExpensesReport(
             @RequestParam String format, // pdf or html
             @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
-        String s = reportService.generateExpensesReport(format, pageable) + "/expenses_report." + format;
+        String s = reportService.generateExpensesReport(format, pageable) + "/expensesReport." + format;
         if (new File(s).exists()) {
             return new ResponseEntity<>(HttpStatus.CREATED);
         }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);    //exception not created
     }
 
 }
