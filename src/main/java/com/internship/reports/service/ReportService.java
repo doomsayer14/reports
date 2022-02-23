@@ -6,8 +6,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.design.JRDesignStyle;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +16,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,8 +24,6 @@ public class ReportService {
     private final Proxy proxy;
 
     private final static String PATH = "/Users/vyesman/IdeaProjects/reports/src/main/resources/reports";
-
-    private final static String TMT = "";
 
     @SneakyThrows
     public String generateExpensesReport(String reportFormat, Pageable pageable) {
