@@ -1,11 +1,15 @@
 package com.internship.reports.service;
 
-import com.internship.reports.proxy.Proxy;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.data.domain.Pageable;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.Mockito.when;
 
 //@RunWith(SpringRunner.class)
 //@SpringBootTest
@@ -15,11 +19,12 @@ public class ReportServiceTest {
     @InjectMocks
     ReportService reportService;
 
-    @Mock
-    Proxy proxy;
-
-    public String testGenerateExpensesReport(String reportFormat, Pageable pageable) {
-        return "";
-    }
+//
+//    public void testGenerateExpensesReport(String reportFormat, Pageable pageable) {
+//        when(proxy.treatments()).thenReturn(MODEL_LIST);
+//        PageImpl<TreatmentModel> page = new PageImpl<>(MODEL_LIST);
+//        when(new PageImpl<>(MODEL_LIST)).thenReturn(page);
+//
+//    }
 
 }
