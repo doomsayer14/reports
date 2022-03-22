@@ -7,6 +7,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * Provides connection with other microservices
+ */
 @RequiredArgsConstructor
 public class Adapter {
 
