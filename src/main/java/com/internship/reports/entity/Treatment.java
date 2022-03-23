@@ -19,4 +19,6 @@ public class Treatment {
     private Double price;
     private LocalDate startDate;
 
+
+
 }
