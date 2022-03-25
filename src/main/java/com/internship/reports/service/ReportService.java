@@ -101,7 +101,7 @@ public class ReportService {
     private Patient requestPatient(Long id) {
         ResponseEntity<Patient> patientResponseEntity =
                 adapter.getResponseEntity(MicroserviceURLS.PDM, headerService.getToken(),
-                        PdmEndpoints.GET_PATIENT_BY_ID, null, Patient.class, id);
+                        PdmEndpoints.GET_PATIENT_BY_ID, null, Patient.class, 4);
         return patientResponseEntity.getBody();
     }
 }

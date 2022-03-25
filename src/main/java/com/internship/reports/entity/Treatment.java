@@ -18,7 +18,5 @@ public class Treatment {
     private String currency;
     private Double price;
     private LocalDate startDate;
-
-
-
+    private LocalDate endDate;
 }
